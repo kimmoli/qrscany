@@ -1,13 +1,15 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import UdpIf 1.0
 
-Page {
+
+Dialog
+{
     id: page
 
     property string qrtag: "Not found"
 
-    function isHttpLink(url) {
+    function isHttpLink(url)
+    {
         if (url.match("^https?://"))
         {
             return true;
@@ -15,49 +17,44 @@ Page {
         return false;
     }
 
-    SilicaFlickable {
+    onDone:
+    {
+        if (result === DialogResult.Accepted)
+        {
+            qrtag = textArea.text
+        }
+    }
+
+    SilicaFlickable
+    {
         anchors.fill: parent
-        PullDownMenu {
-//            visible: isHttpLink(qrtag)
-
-            MenuItem {
-                text: "Send"
-                onClicked: udp.sendMessage(qrtag, true)
-            }
-
-            MenuItem {
+        PullDownMenu
+        {
+            visible: isHttpLink(qrtag)
+            MenuItem
+            {
                 text: "Open URL"
                 visible: isHttpLink(qrtag)
-                onClicked: {
+                onClicked:
+                {
                     Qt.openUrlExternally(qrtag);
                 }
             }
         }
 
-        PageHeader {
+        DialogHeader
+        {
             id: pageHeader
-            title: "Tag found"
+            title: "tag found"
+            acceptText: "Send over UDP"
+            cancelText: "Scan new"
         }
-        TextArea {
+
+        TextArea
+        {
             id: textArea
-            anchors.top: pageHeader.bottom
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
+            anchors.fill: parent
             text: qrtag
         }
-
     }
-
-    UdpIf
-    {
-        id: udp
-        Component.onCompleted:
-        {
-//            updateNetworkInfo()
-            readInitParams()
-//            initSocket()
-        }
-    }
-
 }
