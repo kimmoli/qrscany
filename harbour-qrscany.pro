@@ -12,14 +12,17 @@ CONFIG += sailfishapp
 
 include(qzxing/qzxing.pri)
 
-SOURCES += src/harbour-qrscany.cpp
+SOURCES += src/harbour-qrscany.cpp \
+    src/udpif.cpp
 
 OTHER_FILES += qml/harbour-qrscany.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
     rpm/harbour-qrscany.spec \
-    rpm/harbour-qrscany.yaml \
     harbour-qrscany.desktop \
     qml/pages/AboutPage.qml \
     qml/pages/TagPage.qml
+
+HEADERS += \
+    src/udpif.h
 

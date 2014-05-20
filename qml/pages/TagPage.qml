@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import UdpIf 1.0
 
 Page {
     id: page
@@ -17,7 +18,13 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
         PullDownMenu {
-            visible: isHttpLink(qrtag)
+//            visible: isHttpLink(qrtag)
+
+            MenuItem {
+                text: "Send"
+                onClicked: udp.sendMessage(qrtag, true)
+            }
+
             MenuItem {
                 text: "Open URL"
                 visible: isHttpLink(qrtag)
@@ -39,5 +46,18 @@ Page {
             anchors.bottom: parent.bottom
             text: qrtag
         }
+
     }
+
+    UdpIf
+    {
+        id: udp
+        Component.onCompleted:
+        {
+//            updateNetworkInfo()
+            readInitParams()
+//            initSocket()
+        }
+    }
+
 }

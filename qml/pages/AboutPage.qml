@@ -40,11 +40,19 @@ Page {
             title: "About"
         }
         Label {
+            id: orglabel
             text: "QRScany is written by \nMartin Windolph (yoktobit)\nIt uses QZXing for scanning \nbarcodes, which is licenced \nunder an Apache Licence 2.0.\nSpecial thanks to Moth \nfor the QRScany icon."
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             color: Theme.primaryColor
         }
+        Label {
+            text: "\nUDP sending added by\nKimmo Lindholm"
+            anchors.top: orglabel.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: Theme.primaryColor
+        }
+
     }
 }
 
