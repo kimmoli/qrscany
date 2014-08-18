@@ -1,6 +1,9 @@
 QRScany
 =======
 
+Forked from yoktobit\harbour-qrscany
+added udp transmission
+
 Copyright (C) 2014 Martin Windolph
 
 QRScany is free software: you can redistribute it and/or modify
