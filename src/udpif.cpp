@@ -175,8 +175,12 @@ void UdpIf::sendMessage(QString msg, bool bCast)
 
     if (!m_udpSocketTx)
         m_udpSocketTx = new QUdpSocket(this);
+		
+	qDebug() << "socket created";
 
     m_udpSocketTx->writeDatagram(datagram.data(), datagram.size(), toAddress, quint16(m_udpPort.toInt()));
+	
+	qDebug() << "message sent";
 }
 
 

@@ -53,7 +53,14 @@ Dialog
         TextArea
         {
             id: textArea
-            anchors.fill: parent
+            anchors.top: pageHeader.bottom
+            anchors.topMargin: Theme.paddingLarge
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.paddingSmall
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingLarge
             text: qrtag
         }
     }
